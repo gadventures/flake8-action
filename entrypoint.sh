@@ -1,5 +1,4 @@
 #!/bin/sh
-set -eu
 
 printf "\n\nSearching for Python files with changes\n"
 # Get the files changed by comparing to another branch, passed here via an arg. Only get python files that arent
@@ -20,7 +19,7 @@ if [ -n "$FILES" ]; then
         fi
     done
 else
-    printf "No python files with changes"
+    printf "No python files with changes\n"
 fi
 
 exit $RETVAL
