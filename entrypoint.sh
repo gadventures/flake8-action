@@ -3,7 +3,8 @@
 printf "\n\nSearching for Python files with changes\n"
 # Get the files changed by comparing to another branch, passed here via an arg. Only get python files that arent
 # migrations
-FILES=$(git diff $1 --cached --name-only --diff-filter=ACM | grep -E ".py$" | grep -v "migrations/")
+MERGE_BASE=$(git merge-base $GITHUB_SHA $1)
+FILES=$(git diff $MERGE_BASE --cached --name-only --diff-filter=ACM | grep -E ".py$" | grep -v "migrations/")
 RETVAL=0
 
 if [ -n "$FILES" ]; then
