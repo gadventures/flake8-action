@@ -10,7 +10,7 @@ RETVAL=0
 if [ -n "$FILES" ]; then
     printf "Checking python files for flake8 violations"
     for file in ${FILES}; do
-        FLAKE8_ERRORS=$(git show :${file} | flake8 --ignore=E501 - | sed -e 's/^stdin\:/line /g')
+        FLAKE8_ERRORS=$(git show :${file} | flake8 --ignore=E501,W503,W504 - | sed -e 's/^stdin\:/line /g')
 
         if [ "$FLAKE8_ERRORS" != "" ]; then
             printf "Flake8 errors detected in $file\n"
